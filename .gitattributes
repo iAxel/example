@@ -1,5 +1,13 @@
 * text=auto
+
+*.js linguist-vendored
 *.css linguist-vendored
 *.scss linguist-vendored
-*.js linguist-vendored
-CHANGELOG.md export-ignore
+
+/tests export-ignore
+
+.gitignore export-ignore
+.editorconfig export-ignore
+.gitattributes export-ignore
+
+phpunit.xml export-ignore
