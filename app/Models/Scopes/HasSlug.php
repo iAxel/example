@@ -4,16 +4,16 @@ namespace App\Models\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 
-trait HasId
+trait HasSlug
 {
     /**
      * @param Builder $query
-     * @param int $id
+     * @param string $slug
      *
      * @return Builder
      */
-    public function scopeFindById(Builder $query, int $id): Builder
+    public function scopeFindBySlug(Builder $query, string $slug): Builder
     {
-        return $query->where('id', '=', $id);
+        return $query->where('slug', '=', $slug);
     }
 }

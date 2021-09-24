@@ -2,17 +2,18 @@
 
 namespace App\Models\Scopes;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 trait HasEmail
 {
     /**
+     * @param Builder $query
      * @param string $email
      *
-     * @return Model|null
+     * @return Builder
      */
-    public function findByEmail(string $email): Model|null
+    public function scopeFindByEmail(Builder $query, string $email): Builder
     {
-        return $this->newQuery()->where('email', '=', $email)->first();
+        return $query->where('email', '=', $email);
     }
 }
