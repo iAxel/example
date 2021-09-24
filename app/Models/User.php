@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Models\Scopes\HasId;
 use App\Models\Scopes\HasEmail;
 
-use App\Models\Traits\HasCUD;
 use App\Models\Traits\HasDate;
 
 use Illuminate\Support\Carbon;
@@ -33,6 +32,10 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
+ * @method static User|Builder filter(array $attributes)
+ * @method static User|Builder findById(int $id)
+ * @method static User|Builder findByEmail(string $email)
+ *
  * @mixin Model
  */
 final class User extends Model implements AuthenticatableContract, AuthorizableContract
@@ -40,7 +43,6 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
     use HasId;
     use HasEmail;
 
-    use HasCUD;
     use HasDate;
 
     use HasFactory;
@@ -75,13 +77,14 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
     ];
 
     /**
+     * @param Builder $query
      * @param array $attributes
      *
      * @return Builder
      */
-    public function filter(array $attributes): Builder
+    public function scopeFilter(Builder $query, array $attributes): Builder
     {
-        return $this->newQuery()
+        return $query
             ->when($attributes['search'] ?? null, function ($query, $search) {
                 return $query
                     ->where('id', 'like', "%$search%")
