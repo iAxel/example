@@ -6,7 +6,7 @@ use App\Models\User;
 
 use App\Http\Repositories\Api\Repository as BaseRepository;
 
-class Repository extends BaseRepository
+final class Repository extends BaseRepository
 {
     /**
      * @var User
