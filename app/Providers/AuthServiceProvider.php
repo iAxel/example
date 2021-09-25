@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Policy;
+
+use App\Policies\UserPolicy;
+use App\Policies\RolePolicy;
+use App\Policies\PolicyPolicy;
+
 use Illuminate\Support\Facades\Auth;
 
 use App\Auth\TokenGuard;
@@ -15,7 +23,9 @@ final class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        //
+        User::class => UserPolicy::class,
+        Role::class => RolePolicy::class,
+        Policy::class => PolicyPolicy::class,
     ];
 
     /**
