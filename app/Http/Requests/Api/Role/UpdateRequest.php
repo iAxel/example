@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\Role;
 
 use App\Http\Requests\Api\Request;
 
-use App\Http\Requests\Api\Traits\HasId;
+use App\Http\Requests\Traits\HasId;
 
 final class UpdateRequest extends Request
 {
