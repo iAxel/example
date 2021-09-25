@@ -15,7 +15,7 @@ final class UpdateRequest extends Request
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('update', $this->getId());
     }
 
     /**

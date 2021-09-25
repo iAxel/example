@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api\Role;
 
+use App\Models\Role;
+
 use App\Http\Requests\Api\Request;
 
 final class CreateRequest extends Request
@@ -11,7 +13,7 @@ final class CreateRequest extends Request
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('create', Role::class);
     }
 
     /**
