@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api\Policy;
 
+use App\Models\Policy;
+
 use App\Http\Requests\Api\Request;
 
 final class ShowRequest extends Request
@@ -11,7 +13,7 @@ final class ShowRequest extends Request
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('view', Policy::class);
     }
 
     /**

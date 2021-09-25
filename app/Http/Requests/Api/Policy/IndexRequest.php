@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api\Policy;
 
+use App\Models\Policy;
+
 use App\Http\Requests\Api\Request;
 
 final class IndexRequest extends Request
@@ -11,7 +13,7 @@ final class IndexRequest extends Request
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('viewAny', Policy::class);
     }
 
     /**
