@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Traits;
+namespace App\Http\Requests\Traits;
 
 trait HasId
 {
