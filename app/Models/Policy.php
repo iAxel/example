@@ -7,7 +7,7 @@ use App\Models\Scopes\HasSlug;
 
 use App\Models\Traits\HasDate;
 
-use App\Models\Relations\Role\HasPermissions;
+use App\Models\Relations\Policy\HasPermissions;
 
 use Illuminate\Support\Carbon;
 
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * App\Models\Role
+ * App\Models\Policy
  *
  * @property int $id
  *
@@ -30,13 +30,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @property-read Permission[]|Collection $permissions
  *
- * @method static Role|Builder filter(array $attributes)
- * @method static Role|Builder findById(int $id)
- * @method static Role|Builder findBySlug(string $slug)
+ * @method static Policy|Builder filter(array $attributes)
+ * @method static Policy|Builder findById(int $id)
+ * @method static Policy|Builder findBySlug(string $slug)
  *
  * @mixin Model
  */
-final class Role extends Model
+final class Policy extends Model
 {
     use HasId;
     use HasSlug;
@@ -50,7 +50,7 @@ final class Role extends Model
     /**
      * @var string
      */
-    protected $table = 'roles';
+    protected $table = 'policies';
 
     /**
      * @var array
