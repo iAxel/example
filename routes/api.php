@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\User\Controller as UserController;
 use App\Http\Controllers\Api\Role\Controller as RoleController;
 use App\Http\Controllers\Api\Policy\Controller as PolicyController;
 
+use App\Http\Controllers\Api\Profile\Controller as ProfileController;
+use App\Http\Controllers\Api\Profile\Session\Controller as ProfileSessionController;
+
 Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'auth'], function () {
         Route::post('login', LoginController::class)->name('login');
@@ -35,6 +38,16 @@ Route::group(['prefix' => 'api'], function () {
         Route::group(['as' => 'policies.', 'prefix' => 'policies'], function () {
             Route::get('/', [PolicyController::class, 'index'])->name('index');
             Route::get('{id}', [PolicyController::class, 'show'])->name('show');
+        });
+
+        Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
+            Route::get('/', ProfileController::class)->name('show');
+
+            Route::group(['as' => 'sessions.', 'prefix' => 'sessions'], function () {
+                Route::get('/', [ProfileSessionController::class, 'index'])->name('index');
+                Route::delete('revoke/{token}', [ProfileSessionController::class, 'revoke'])->name('revoke');
+                Route::delete('revoke-all', [ProfileSessionController::class, 'revokeAll'])->name('revoke.all');
+            });
         });
     });
 });
