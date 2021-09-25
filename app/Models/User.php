@@ -7,10 +7,13 @@ use App\Models\Scopes\HasEmail;
 
 use App\Models\Traits\HasDate;
 
+use App\Models\Relations\User\HasRoles;
+
 use Illuminate\Support\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,6 +35,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
+ * @property-read Role[]|Collection $roles
+ *
  * @method static User|Builder filter(array $attributes)
  * @method static User|Builder findById(int $id)
  * @method static User|Builder findByEmail(string $email)
@@ -44,6 +49,8 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
     use HasEmail;
 
     use HasDate;
+
+    use HasRoles;
 
     use HasFactory;
 

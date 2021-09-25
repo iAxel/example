@@ -7,6 +7,7 @@ use App\Models\Scopes\HasSlug;
 
 use App\Models\Traits\HasDate;
 
+use App\Models\Relations\Role\HasUsers;
 use App\Models\Relations\Role\HasPermissions;
 
 use Illuminate\Support\Carbon;
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
+ * @property-read User[]|Collection $users
  * @property-read Permission[]|Collection $permissions
  *
  * @method static Role|Builder filter(array $attributes)
@@ -43,6 +45,7 @@ final class Role extends Model
 
     use HasDate;
 
+    use HasUsers;
     use HasPermissions;
 
     use HasFactory;
