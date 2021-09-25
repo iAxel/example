@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\User\Controller as UserController;
 use App\Http\Controllers\Api\Role\Controller as RoleController;
+use App\Http\Controllers\Api\Policy\Controller as PolicyController;
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
     Route::group(['as' => 'users.', 'prefix' => 'users'], function () {
@@ -20,5 +21,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
         Route::get('{id}', [RoleController::class, 'show'])->name('show');
         Route::put('{id}', [RoleController::class, 'update'])->name('update');
         Route::delete('{id}', [RoleController::class, 'delete'])->name('delete');
+    });
+
+    Route::group(['as' => 'policies.', 'prefix' => 'policies'], function () {
+        Route::get('/', [PolicyController::class, 'index'])->name('index');
+        Route::get('{id}', [PolicyController::class, 'show'])->name('show');
     });
 });
