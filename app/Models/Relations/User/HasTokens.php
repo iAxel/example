@@ -33,8 +33,16 @@ trait HasTokens
      */
     public function revokeToken(string $access_token): void
     {
-        $token = $this->tokens()->where('access_token', '=', $access_token)->first();
+        $this->tokens()->where('access_token', '=', $access_token)->delete();
+    }
 
-        $token?->delete();
+    /**
+     * @param string $access_token
+     *
+     * @return void
+     */
+    public function revokeTokens(string $access_token): void
+    {
+        $this->tokens()->where('access_token', '!=', $access_token)->delete();
     }
 }
