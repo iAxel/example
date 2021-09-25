@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Models\Scopes\HasId;
 use App\Models\Scopes\HasEmail;
+use App\Models\Scopes\HasCredentials;
 
 use App\Models\Traits\HasDate;
 
 use App\Models\Relations\User\HasRoles;
+use App\Models\Relations\User\HasTokens;
 
 use Illuminate\Support\Carbon;
 
@@ -36,10 +38,12 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
  * @property Carbon|null $updated_at
  *
  * @property-read Role[]|Collection $roles
+ * @property-read Token[]|Collection $tokens
  *
  * @method static User|Builder filter(array $attributes)
  * @method static User|Builder findById(int $id)
  * @method static User|Builder findByEmail(string $email)
+ * @method static User|Builder findByCredentials(array $credentials)
  *
  * @mixin Model
  */
@@ -47,10 +51,12 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
 {
     use HasId;
     use HasEmail;
+    use HasCredentials;
 
     use HasDate;
 
     use HasRoles;
+    use HasTokens;
 
     use HasFactory;
 
