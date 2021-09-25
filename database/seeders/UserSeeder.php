@@ -15,7 +15,7 @@ final class UserSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Owner',
-            'email' => 'owner@example.test',
+            'email' => 'owner@example.com',
             'password' => 'secret',
         ]);
     }

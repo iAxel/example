@@ -15,16 +15,16 @@ final class PolicySeeder extends Seeder
     {
         Policy::factory()->createMany([
             [
-                'name' => 'Users',
+                'name' => 'User',
             ],
             [
-                'name' => 'Roles',
+                'name' => 'Role',
             ],
             [
-                'name' => 'Policies',
+                'name' => 'Policy',
             ],
             [
-                'name' => 'Permissions',
+                'name' => 'Permission',
             ],
         ]);
     }
